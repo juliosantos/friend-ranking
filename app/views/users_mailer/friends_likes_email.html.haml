@@ -1,0 +1,22 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{ 'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8" }
+  %body{ :style => "font-family: 'helvetica','arial',sans-serif; font-size: 14px;" }
+    %p
+      Well, that's it. They're now available in
+      = link_to "the app", "http://#{App::URL}/#step3"
+      for you :)
+
+    - if @unicorns
+      %p
+        Oh, and here's some unicorns:
+      %p
+        = image_tag "https://s3-eu-west-1.amazonaws.com/julio-sandbox/unicorn2.jpg"
+      %p
+        = image_tag "https://s3-eu-west-1.amazonaws.com/julio-sandbox/unicorn3.jpg"
+      %p
+        = image_tag "https://s3-eu-west-1.amazonaws.com/julio-sandbox/unicorn1.jpg"
+    - else
+      %p
+        No unicorns for you!

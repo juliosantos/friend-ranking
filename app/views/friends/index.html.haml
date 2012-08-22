@@ -1,0 +1,173 @@
+#login-modal.modal.hide.fade
+  .modal-header
+    %h3
+      Please log in to continue
+  .modal-body
+    %p
+      In order to get you Facebook friends' likes and rank them, you will have to log in.
+  .modal-footer
+    %a#login.btn.btn-primary{ :href => "#", "data-loading-text" => "Reticulating splines...", "data-repeat-text" => "Oops. Please try again." }
+      Login with Facebook
+    %a.btn{ :href => "#", "data-dismiss" => "modal" }
+      No thanks
+
+
+.row
+  .span9
+    %h1
+      Friend Ranking
+
+.row#splines
+  .span9
+    %p
+
+.row#controls
+  .span9
+    %ul#steps.nav.nav-tabs
+      %li.active
+        %a{ :href => "#step1", "data-toggle" => "tab" }
+          Step 1: Your Friends
+      %li
+        %a{ :href => "#step2", "data-toggle" => "tab" }
+          Step 2: Their Likes
+      %li
+        %a{ :href => "#step3", "data-toggle" => "tab" }
+          Step 3: Ranking time!
+    .tab-content
+      #step1.tab-pane.active
+        %p
+          First we'll need to get a list of all your friends. This is done via the
+          %a{ :href => "http://developers.facebook.com/docs/reference/api/user/#friends", :target => "_blank" }
+            Friends Connection.
+        %pre
+          https://graph.facebook.com/me/friends?access_token=DAT_ACCESS_TOKEN
+        %p
+          %a#get-friends.btn{ :href => "#", "data-loading-text" => "Reticulating splines...", "data-repeat-text" => "Oops. Please try again." }
+            %i.icon-user
+            Go on, get your friends
+      #step2.tab-pane
+        %p
+          Now that we have your friends, it's time to get their likes. This is done via the
+          %a{ :href => "http://developers.facebook.com/docs/reference/api/user/#likes", :target => "_blank" }
+            Likes Connection.
+        %pre
+          https://graph.facebook.com/FRIEND_ID/likes?access_token=DAT_ACCESS_TOKEN
+        %p
+          Now, this can be a lenghty operation, what with people liking stuff all the time and whatnot. So, enter your email and you'll be notified when this is complete!
+        %form.well.form-inline
+          .input-prepend
+            %span.add-on
+              %i.icon-envelope
+            %input.input{ :type => "text", :placeholder => "you@yourprovider.com" }
+          %label.checkbox
+            %input{ :type => "checkbox" }
+              with unicorns
+          %button#get-friends-likes.btn{ :type => "submit", "data-loading-text" => "Reticulating splines...", "data-repeat-text" => "Oops. Please try again." }
+            %i.icon-heart
+            Get ALL your friends' likes
+      #step3.tab-pane
+        %p
+          Sweet, we now know all your friends' likes. Let's rank them according to the number of likes they have in common with you.
+        %p
+          Hey, why don't you try to guess who will be at the top of the list?
+        %p
+        %form.well.form-inline
+          .input-prepend
+            %span.add-on
+              %i.icon-user
+            %input.input{ :type => "text", :placeholder => "Your likemind's name" }
+          %button#get-top-friends.btn{ :type => "submit", "data-loading-text" => "Reticulating splines...", "data-repeat-text" => "Oops. Please try again." }
+            %i.icon-list-alt
+            OK, gimme those ratings
+        .alert.alert-success
+          %strong
+            Great Success!
+          FRIEND_NAME is indeed at the top of the list.
+        .alert.alert-error
+          %strong
+            Fail.
+          I'm sure FRIEND_NAME would love to know about this...
+    %hr
+
+.row#friends
+  .span9
+    %h2 Your friends
+    %table#friends-table.table.table-striped
+      %thead
+        %tr
+          %th
+            Picture
+          %th
+            Name
+          %th
+            \# likes
+      %tbody
+
+.row#friends-ranked
+  .span9
+    %h2 Your top 10 friends
+    %table#friends-ranked-table.table.table-striped
+      %thead
+        %tr
+          %th
+            Picture
+          %th
+            Name
+          %th
+            \# likes in common
+      %tbody
+
+
+#likes-modal.modal.hide.fade
+  .modal-header
+    %h3
+      Common likes
+  .modal-body
+    %ul
+  .modal-footer
+    %a.btn{ :href => "#", "data-dismiss" => "modal" }
+      Close
+
+
+:plain
+  <script id="friend-row", type="text/template">
+    <tr id="<%= friendID %>">
+      <td>
+        <img src="<%= picture %>">
+      </td>
+      <td>
+        <%= name %>
+      </td>
+      <td class="likes-count">
+        <%= likes_count %>
+      </td>
+      <td>
+        <a class="btn btn-mini" href="<%= debug %>" target="_blank">Debug</a>
+      </td>
+    </tr>
+  </script>
+
+  <script id="friend-ranked-row", type="text/template">
+    <tr id="<%= friendID %>">
+      <td>
+        <img src="<%= picture %>">
+      </td>
+      <td>
+        <%= name %>
+      </td>
+      <td class="likes-count">
+        <%= likes_count %>
+      </td>
+      <td>
+        <a class="btn btn-mini" href="#" data-loading-text="Reticulating splines..." data-repeat-text="Oops. Please try again.">Show common likes</a>
+      </td>
+    </tr>
+  </script>
+
+  <script id="like", type="text/template">
+    <li>
+      <a href="<%= url %>" target="_blank" rel="tooltip" title="<%= name %>">
+        <img src="<%= picture %>"></img>
+      </a>
+    </li>
+  </script>
