@@ -12,6 +12,29 @@ The app is ready for Heroku deployment, requiring 1 web dyno and 1 worker dyno. 
 
 A live deployment is available at [friendrank.herokuapp.com](http://friendrank.herokuapp.com)
 
+## Components not in version control
+
+You will need a config/database.yml file, what with this being a Rails app and whatnot.
+
+In order to run this locally, you will also need a config/heroku_local_env.rb file of the form:
+
+    ENV["SENDGRID_PASSWORD"] = "..."
+    ENV["SENDGRID_USERNAME"] = "..."
+    ENV["APP_URL"]           = "..."
+    ENV["FACEBOOK_APP_NAME"] = "..."
+    ENV["FACEBOOK_APP_ID"]   = "..."
+    ENV["FACEBOOK_SECRET"]   = "..."
+
+Those same variables need to be added to the Heroku config for deployment:
+
+    heroku config:add SENDGRID_PASSWORD=...
+    heroku config:add SENDGRID_USERNAME=...
+    heroku config:add FACEBOOK_APP_NAME=...
+    heroku config:add FACEBOOK_APP_ID=...
+    heroku config:add FACEBOOK_SECRET=...
+
+Finally, it's important to note that the above assumes you created a Facebook app and connected it to your app.
+
 # License
 
 Copyright (c) 2012 Júlio Santos
