@@ -6,7 +6,7 @@ Friend Ranking is a basic demo app of some features of Facebook's Graph API. It 
 
 ## Context
 
-I created this demo app to support my workshop at Social Media Week Berlin, «Fetching Open Graph Data — A Basic Introduction for Curious Developers». Please note that the app is not to be considered production-ready.
+I created this demo app to support my workshop at Social Media Week Berlin, «Fetching Open Graph Data — A Basic Introduction for Curious Developers». **Please note that the app is not to be considered production-ready.**
 
 The app is ready for Heroku deployment, requiring 1 web dyno and 1 worker dyno. I use [foreman](https://github.com/ddollar/foreman) to run the background processes locally.
 
