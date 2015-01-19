@@ -10,8 +10,6 @@ I created this demo app to support my workshop at Social Media Week Berlin, «Fe
 
 The app is ready for Heroku deployment, requiring 1 web dyno and 1 worker dyno. I use [foreman](https://github.com/ddollar/foreman) to run the background processes locally.
 
-A live deployment is available at [friendrank.herokuapp.com](http://friendrank.herokuapp.com)
-
 ## Components not in version control
 
 You will need a config/database.yml file, what with this being a Rails app and whatnot.
